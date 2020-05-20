@@ -11,6 +11,7 @@ export const generateMap = () => {
 		row = new Array(5).fill(0);
 		return row;
 	});
+
 	return startingMap;
 };
 export const getPosition = (map) => {

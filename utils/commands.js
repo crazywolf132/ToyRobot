@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { NOT_ENOUGH_COORDINATES, NOT_VALID_DIRECTION_NAME } from './errors';
-import { placeRobot, moveRobot } from './map';
+import { placeRobot, moveRobot, getPosition } from './map';
 
 const log = console.log;
 const error = chalk.bgRed;
@@ -28,4 +28,7 @@ export const RIGHT = (currentDirection, directionList) => {
 	}
 };
 
-export const REPORT = (map) => {};
+export const REPORT = (map, currentDirection) => {
+	let position = getPosition(map);
+	return log(`Output: ${position.x},${position.y},${currentDirection}`);
+};
