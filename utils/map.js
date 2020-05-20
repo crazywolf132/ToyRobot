@@ -68,6 +68,7 @@ export const getPosition = (map) => {
 			}
 		}
 	}
+	// Returning false if the robot isnt on the map yet.
 	return false;
 };
 
@@ -97,6 +98,7 @@ export const generateNewCoordinates = (currentPosition, direction) => {
  * Checks a given Object (Coordinate Object {x : 0, y: 0}) to see if it is
  * between 0-5 on both the x & y.
  * @param {Object} newCoordinates {x, y}
+ * @returns {Boolean} valid
  */
 export const validMove = (newCoordinates) => {
 	return (
