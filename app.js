@@ -65,6 +65,7 @@ const handleInput = (userInput) => {
 	}
 };
 
+/* istanbul ignore next */
 const prompt = (rl) => {
 	rl.question('> ', (userInput) => {
 		let result = handleInput(userInput);
@@ -78,6 +79,7 @@ const prompt = (rl) => {
 	});
 };
 
+/* istanbul ignore next */
 const StartGame = () => {
 	// This is used to generate the map, then prompt the user...
 	const rl = createInterface({
@@ -89,5 +91,8 @@ const StartGame = () => {
 	prompt(rl);
 };
 
+/* istanbul ignore next */
 if (!process.env.NODE_ENV === 'test' || process.env.NODE_ENV == undefined)
 	StartGame();
+
+export default handleInput;
