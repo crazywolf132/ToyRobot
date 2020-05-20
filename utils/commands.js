@@ -30,7 +30,7 @@ export const PLACE = (map, directionList, currentDirection, userInput) => {
 
 	let result = placeRobot(map, postionInfo[0], postionInfo[1]);
 	if (result !== -1) {
-		return { map, currentDirection };
+		return { map: result, currentDirection };
 	} else {
 		return -1;
 	}
