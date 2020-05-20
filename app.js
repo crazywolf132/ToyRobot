@@ -46,16 +46,16 @@ const handleInput = (userInput) => {
 			currentDirection = result.currentDirection
 				? result.currentDirection
 				: currentDirection;
-			break;
+			return { command: 'PLACE', _Map };
 		case 'MOVE':
 			_Map = MOVE(_Map, currentDirection);
-			break;
+			return { command: 'MOVE', _Map };
 		case 'LEFT':
 			currentDirection = LEFT(currentDirection, _Directions);
-			break;
+			return { command: 'LEFT', currentDirection };
 		case 'RIGHT':
 			currentDirection = RIGHT(currentDirection, _Directions);
-			break;
+			return { command: 'RIGHT', currentDirection };
 		case 'REPORT':
 			REPORT(_Map, currentDirection);
 			return 1;
