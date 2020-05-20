@@ -1,6 +1,6 @@
 import { createInterface } from 'readline';
-import { generateMap } from './utils/map';
 import chalk from 'chalk';
+import { generateMap } from './utils/map';
 import { BROKEN_THE_GAME_ERROR } from './utils/errors';
 import { PLACE, MOVE, LEFT, RIGHT, REPORT } from './utils/commands';
 
