@@ -14,6 +14,29 @@ export const generateMap = () => {
 
 	return startingMap;
 };
+export const placeRobot = (map, x, y) => {
+	if (x < 5 && x >= 0 && y < 5 && y >= 0) {
+		// This means they are valid numbers...
+		// Only if the numbers are valid, will we change the map...
+
+		// Checking to see if there is currently another robot on the map...
+		// If there is, we will regenerate the map...
+		if (getPosition(map)) {
+			map = generateMap();
+		}
+
+		// Changing the given position to a '1' to signify that this is the robot.
+		map[x][y] = 1;
+	} else {
+		// The provided values werent valid, so we are letting the user know.
+		log(error(PLEASE_CHOOSE_A_VALID_X_Y));
+		// Returning -1 to signify there was an error.
+		return -1;
+	}
+
+	// We are returning the map, regardless of it was actually updated or not.
+	return map;
+};
 export const getPosition = (map) => {
 	for (var x = 0; x < map.length; x++) {
 		for (var y = 0; y < map[x].length; y++) {
