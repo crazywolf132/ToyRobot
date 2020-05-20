@@ -18,6 +18,14 @@ export const generateMap = () => {
 
 	return startingMap;
 };
+
+/**
+ * This function is used for placing the robot at a specific position in the map...
+ * only if the values are valid...
+ * @param {2D Array} map
+ * @param {INT} x
+ * @param {INT} y
+ */
 export const placeRobot = (map, x, y) => {
 	if (x < 5 && x >= 0 && y < 5 && y >= 0) {
 		// This means they are valid numbers...
