@@ -24,6 +24,22 @@ export const getPosition = (map) => {
 	}
 	return false;
 };
+
+export const generateNewCoordinates = (currentPosition, direction) => {
+	switch (direction.toUpperCase()) {
+		case 'NORTH':
+			return { x: currentPosition.x - 1, y: currentPosition.y };
+		case 'SOUTH':
+			return { x: currentPosition.x + 1, y: currentPosition.y };
+		case 'EAST':
+			return { x: currentPosition.x, y: currentPosition.y + 1 };
+		case 'WEST':
+			return { x: currentPosition.x, y: currentPosition.y - 1 };
+		default:
+			log(error(BROKEN_THE_GAME_ERROR));
+	}
+};
+
 export const validMove = (newCoordinates) => {
 	return (
 		newCoordinates.x >= 0 &&
