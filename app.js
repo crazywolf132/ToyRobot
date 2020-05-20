@@ -6,17 +6,11 @@ import { PLACE, MOVE, LEFT, RIGHT, REPORT } from './utils/commands';
 
 // Setting up logger and readLine
 const log = console.log;
-const rl = createInterface({
-	input: process.stdin,
-	output: process.stdout,
-});
-rl.setPrompt('> ');
-
 // Setting up variables that should never be changed. Hence the '_' prefix;
 const _ValidCommands = ['PLACE', 'MOVE', 'LEFT', 'RIGHT', 'REPORT'];
 const _Directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
 // This is the only exception... As we actively modify the map by our system...
-let _Map;
+let _Map = generateMap();
 
 // Used to store the Current position. Ultimately, this could be an INT, and the LIST be an ENUM
 // But as there is only 4 possible choices, it simply isnt worth it.
@@ -27,9 +21,8 @@ let firstMove = true;
 const handleInput = (userInput) => {
 	if (firstMove) {
 		if (!userInput.toUpperCase().includes('PLACE')) {
-			return log(
-				chalk.bgRed('Please use the PLACE command to start the game!')
-			);
+			log(chalk.bgRed('Please use the PLACE command to start the game!'));
+			return -1;
 		}
 	}
 
@@ -37,7 +30,7 @@ const handleInput = (userInput) => {
 	// Getting the starting of the command
 	let command = userInput.split(' ')[0].toUpperCase();
 	if (!_ValidCommands.includes(command))
-		return log(chalk.bgRed('Please use a valid command.'));
+		return console.log(chalk.bgRed('Please use a valid command.'));
 
 	// As we are here... we assume we are now working with a valid command...
 	// We just need to workout which one...
@@ -53,16 +46,16 @@ const handleInput = (userInput) => {
 			currentDirection = result.currentDirection
 				? result.currentDirection
 				: currentDirection;
-			break;
+			return { command: 'PLACE', _Map };
 		case 'MOVE':
 			_Map = MOVE(_Map, currentDirection);
-			break;
+			return { command: 'MOVE', _Map };
 		case 'LEFT':
 			currentDirection = LEFT(currentDirection, _Directions);
-			break;
+			return { command: 'LEFT', currentDirection };
 		case 'RIGHT':
 			currentDirection = RIGHT(currentDirection, _Directions);
-			break;
+			return { command: 'RIGHT', currentDirection };
 		case 'REPORT':
 			REPORT(_Map, currentDirection);
 			return 1;
@@ -72,7 +65,8 @@ const handleInput = (userInput) => {
 	}
 };
 
-const prompt = () => {
+/* istanbul ignore next */
+const prompt = (rl) => {
 	rl.question('> ', (userInput) => {
 		let result = handleInput(userInput);
 		if (result === 1) {
@@ -80,15 +74,25 @@ const prompt = () => {
 			return process.exit(0);
 		} else {
 			// Calling this function again to recursively run.
-			return prompt();
+			return prompt(rl);
 		}
 	});
 };
 
+/* istanbul ignore next */
 const StartGame = () => {
 	// This is used to generate the map, then prompt the user...
-	_Map = generateMap();
-	prompt();
+	const rl = createInterface({
+		input: process.stdin,
+		output: process.stdout,
+	});
+
+	rl.setPrompt('> ');
+	prompt(rl);
 };
 
-StartGame();
+/* istanbul ignore next */
+if (!process.env.NODE_ENV === 'test' || process.env.NODE_ENV == undefined)
+	StartGame();
+
+export default handleInput;

@@ -65,5 +65,7 @@ export const RIGHT = (currentDirection, directionList) => {
 
 export const REPORT = (map, currentDirection) => {
 	let position = getPosition(map);
-	return log(`Output: ${position.x},${position.y},${currentDirection}`);
+	return console.log(
+		`Output: ${position.x},${position.y},${currentDirection}`
+	);
 };
