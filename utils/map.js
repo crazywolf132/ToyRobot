@@ -13,6 +13,16 @@ export const generateMap = () => {
 	});
 	return startingMap;
 };
+export const getPosition = (map) => {
+	for (var x = 0; x < map.length; x++) {
+		for (var y = 0; y < map[x].length; y++) {
+			if (map[x][y] == 1) {
+				return { x, y };
+			}
+		}
+	}
+	return false;
+};
 export const validMove = (newCoordinates) => {
 	return (
 		newCoordinates.x >= 0 &&
