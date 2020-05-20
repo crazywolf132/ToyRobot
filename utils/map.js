@@ -71,6 +71,13 @@ export const getPosition = (map) => {
 	return false;
 };
 
+/**
+ * Checks the direction against the known valid directions...
+ * It will then return a new set of Coordinates from the modified `currentPosition` Object.
+ * @param {Object} currentPosition {x, y}
+ * @param {String} direction
+ * @returns {Object} newCoordinates {x, y}
+ */
 export const generateNewCoordinates = (currentPosition, direction) => {
 	switch (direction.toUpperCase()) {
 		case 'NORTH':
