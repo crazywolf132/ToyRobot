@@ -1,7 +1,11 @@
 import { createInterface } from 'readline';
 import chalk from 'chalk';
 import { generateMap } from './utils/map';
-import { BROKEN_THE_GAME_ERROR } from './utils/errors';
+import {
+	BROKEN_THE_GAME_ERROR,
+	PLACE_COMMAND_REQUIRED,
+	NOT_VALID_COMMAND_NAME,
+} from './utils/errors';
 import { PLACE, MOVE, LEFT, RIGHT, REPORT } from './utils/commands';
 
 // Setting up logger and readLine
@@ -21,7 +25,7 @@ let firstMove = true;
 const handleInput = (userInput) => {
 	if (firstMove) {
 		if (!userInput.toUpperCase().includes('PLACE')) {
-			log(chalk.bgRed('Please use the PLACE command to start the game!'));
+			log(chalk.bgRed(PLACE_COMMAND_REQUIRED));
 			return -1;
 		}
 	}
@@ -30,7 +34,7 @@ const handleInput = (userInput) => {
 	// Getting the starting of the command
 	let command = userInput.split(' ')[0].toUpperCase();
 	if (!_ValidCommands.includes(command))
-		return console.log(chalk.bgRed('Please use a valid command.'));
+		return console.log(chalk.bgRed(NOT_VALID_COMMAND_NAME));
 
 	// As we are here... we assume we are now working with a valid command...
 	// We just need to workout which one...
