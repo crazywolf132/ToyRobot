@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { BROKEN_THE_GAME_ERROR } from './errors';
+import { BROKEN_THE_GAME_ERROR, PLEASE_CHOOSE_A_VALID_X_Y } from './errors';
 
 const log = console.log;
 const error = chalk.bgRed;
