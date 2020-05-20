@@ -91,6 +91,7 @@ export const generateNewCoordinates = (currentPosition, direction) => {
 			return { x: currentPosition.x, y: currentPosition.y - 1 };
 		default:
 			log(error(BROKEN_THE_GAME_ERROR));
+			return -1;
 	}
 };
 
