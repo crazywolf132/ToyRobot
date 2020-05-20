@@ -94,3 +94,19 @@ export const validMove = (newCoordinates) => {
 		newCoordinates.y <= 5
 	);
 };
+
+export const moveRobot = (map, direction) => {
+	// Going to get the current Robot Position
+	const position = getPosition(map);
+
+	const newCoordinates = generateNewCoordinates(position, direction);
+
+	// Checking if it is a valid move;
+	if (validMove(newCoordinates)) {
+		// They are valid, so lets move the robot to them!
+		return placeRobot(map, newCoordinates.x, newCoordinates.y);
+	}
+
+	// Seems like they werent valid... so lets just return the old map...
+	return map;
+};
