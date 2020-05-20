@@ -21,9 +21,8 @@ let firstMove = true;
 const handleInput = (userInput) => {
 	if (firstMove) {
 		if (!userInput.toUpperCase().includes('PLACE')) {
-			return log(
-				chalk.bgRed('Please use the PLACE command to start the game!')
-			);
+			log(chalk.bgRed('Please use the PLACE command to start the game!'));
+			return -1;
 		}
 	}
 
@@ -31,7 +30,7 @@ const handleInput = (userInput) => {
 	// Getting the starting of the command
 	let command = userInput.split(' ')[0].toUpperCase();
 	if (!_ValidCommands.includes(command))
-		return log(chalk.bgRed('Please use a valid command.'));
+		return console.log(chalk.bgRed('Please use a valid command.'));
 
 	// As we are here... we assume we are now working with a valid command...
 	// We just need to workout which one...
