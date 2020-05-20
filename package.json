@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "env NODE_ENV=test jest",
+		"start": "babel-node ./app.js",
 		"dev": "nodemon --exec babel-node ./app.js"
 	},
 	"devDependencies": {
