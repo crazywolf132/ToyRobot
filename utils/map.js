@@ -86,6 +86,11 @@ export const generateNewCoordinates = (currentPosition, direction) => {
 	}
 };
 
+/**
+ * Checks a given Object (Coordinate Object {x : 0, y: 0}) to see if it is
+ * between 0-5 on both the x & y.
+ * @param {Object} newCoordinates {x, y}
+ */
 export const validMove = (newCoordinates) => {
 	return (
 		newCoordinates.x >= 0 &&
