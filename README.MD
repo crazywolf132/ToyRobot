@@ -57,8 +57,6 @@ YARN
 
 ## Examples
 
-### Examples
-
 ```
 PLACE 2,2,WEST
 MOVE
@@ -111,6 +109,8 @@ There is the `utils` folder and the `test` folder, alongside the `app.js` file.
 
 -   **_tests_** :
     This folder is home to the unit tests. Pretty self-explanatory.
+
+---
 
 # ORIGINAL TASK MD
 
