@@ -49,9 +49,20 @@ export const placeRobot = (map, x, y) => {
 	// We are returning the map, regardless of it was actually updated or not.
 	return map;
 };
+
+/**
+ * Will go through the X & Y of the Map searching for a `1`,
+ * It will then return a currrentCoordinates Object {x, y}
+ * @param {Array} 2D Map Array
+ * @returns {Object} currentCoordinates
+ */
 export const getPosition = (map) => {
+	// Going though the X
 	for (var x = 0; x < map.length; x++) {
+		// Going through the Y
 		for (var y = 0; y < map[x].length; y++) {
+			// We only need to find one '1', so we will just return
+			// as soon as we find it.
 			if (map[x][y] == 1) {
 				return { x, y };
 			}
