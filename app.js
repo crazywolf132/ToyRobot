@@ -16,7 +16,7 @@ rl.setPrompt('> ');
 const _ValidCommands = ['PLACE', 'MOVE', 'LEFT', 'RIGHT', 'REPORT'];
 const _Directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
 // This is the only exception... As we actively modify the map by our system...
-let _Map;
+let _Map = generateMap();
 
 // Used to store the Current position. Ultimately, this could be an INT, and the LIST be an ENUM
 // But as there is only 4 possible choices, it simply isnt worth it.
