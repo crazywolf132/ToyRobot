@@ -105,8 +105,8 @@ export const validMove = (newCoordinates) => {
 	return (
 		newCoordinates.x >= 0 &&
 		newCoordinates.y >= 0 &&
-		newCoordinates.x <= 5 &&
-		newCoordinates.y <= 5
+		newCoordinates.x < 5 &&
+		newCoordinates.y < 5
 	);
 };
 
