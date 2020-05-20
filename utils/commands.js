@@ -5,6 +5,10 @@ import { placeRobot, moveRobot, getPosition } from './map';
 const log = console.log;
 const error = chalk.bgRed;
 
+export const MOVE = (map, direction) => {
+	return moveRobot(map, direction);
+};
+
 export const LEFT = (currentDirection, directionList) => {
 	let currentDirectionPosition = directionList.indexOf(
 		currentDirection.toUpperCase()
