@@ -4,6 +4,10 @@ import { BROKEN_THE_GAME_ERROR, PLEASE_CHOOSE_A_VALID_X_Y } from './errors';
 const log = console.log;
 const error = chalk.bgRed;
 
+/**
+ * Generates a new 2D array full of `0`'s
+ * The default values are set to 5.
+ */
 export const generateMap = () => {
 	let startingMap = new Array(5).fill([]);
 
