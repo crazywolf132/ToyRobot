@@ -65,7 +65,7 @@ const handleInput = (userInput) => {
 			break;
 		case 'REPORT':
 			REPORT(_Map, currentDirection);
-			break;
+			return 1;
 		default:
 			// There should not be a conceivable way of getting here... but just incase, lets handle it.
 			return log(chalk.bgYellow(BROKEN_THE_GAME_ERROR));
@@ -74,8 +74,14 @@ const handleInput = (userInput) => {
 
 const prompt = () => {
 	rl.question('> ', (userInput) => {
-		handleInput(userInput);
-		prompt(); // Calling this function again to recursively run.
+		let result = handleInput(userInput);
+		if (result === 1) {
+			rl.close();
+			return process.exit(0);
+		} else {
+			// Calling this function again to recursively run.
+			return prompt();
+		}
 	});
 };
 
