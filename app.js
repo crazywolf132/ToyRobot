@@ -6,12 +6,6 @@ import { PLACE, MOVE, LEFT, RIGHT, REPORT } from './utils/commands';
 
 // Setting up logger and readLine
 const log = console.log;
-const rl = createInterface({
-	input: process.stdin,
-	output: process.stdout,
-});
-rl.setPrompt('> ');
-
 // Setting up variables that should never be changed. Hence the '_' prefix;
 const _ValidCommands = ['PLACE', 'MOVE', 'LEFT', 'RIGHT', 'REPORT'];
 const _Directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
@@ -72,7 +66,7 @@ const handleInput = (userInput) => {
 	}
 };
 
-const prompt = () => {
+const prompt = (rl) => {
 	rl.question('> ', (userInput) => {
 		let result = handleInput(userInput);
 		if (result === 1) {
@@ -80,15 +74,20 @@ const prompt = () => {
 			return process.exit(0);
 		} else {
 			// Calling this function again to recursively run.
-			return prompt();
+			return prompt(rl);
 		}
 	});
 };
 
 const StartGame = () => {
 	// This is used to generate the map, then prompt the user...
-	_Map = generateMap();
-	prompt();
+	const rl = createInterface({
+		input: process.stdin,
+		output: process.stdout,
+	});
+
+	rl.setPrompt('> ');
+	prompt(rl);
 };
 
 if (!process.env.NODE_ENV === 'test' || process.env.NODE_ENV == undefined)
